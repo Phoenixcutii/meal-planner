@@ -6,7 +6,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#fff0f5">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23ffb6c1%22 rx=%2220%22/><text y=%22.9em%22 font-size=%2280%22 x=%2210%22>🌸</text></svg>">
+    
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
     
     <title>My Cute Meal Planner</title>
     <style>
@@ -71,7 +73,7 @@
         .food-pool-sidebar {
             flex: 1; background: var(--card-bg); padding: 20px; border-radius: 25px;
             border: 4px solid var(--border-light); box-shadow: var(--shadow);
-            position: sticky; top: 80px; max-height: 80vh; overflow-y: auto;
+            position: sticky; top: 80px; max-height: 80vh; overflow-y: auto; z-index: 90;
         }
         .calendar-section { flex: 2.5; display: flex; flex-direction: column; width: 100%; }
 
@@ -170,6 +172,62 @@
         .card-actions { display: flex; gap: 10px; }
         .view-week-btn { background: var(--btn-blue); border: none; color: white; padding: 8px 12px; border-radius: 10px; font-weight: bold; cursor: pointer; }
         .del-week-btn { background: #ff4d4d; border: none; color: white; padding: 8px 12px; border-radius: 10px; font-weight: bold; cursor: pointer; }
+
+        /* =========================================
+           MOBILE RESPONSIVENESS (IPHONE PORTRAIT)
+           ========================================= */
+        @media (max-width: 800px) {
+            body { padding: 10px; padding-top: 70px; }
+            .container { flex-direction: column; gap: 15px; }
+            h1 { font-size: 2rem; }
+            
+            /* Make sidebar a sticky horizontal menu on top */
+            .food-pool-sidebar {
+                width: 100%;
+                max-width: 100%;
+                position: sticky;
+                top: 50px; 
+                max-height: 35vh;
+                box-sizing: border-box;
+                padding: 15px;
+                margin-bottom: 10px;
+                border-width: 3px;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .pool-section { margin-bottom: 15px; }
+            .pool-section h3 { font-size: 1.1rem; margin-bottom: 8px; border-bottom: 2px dotted var(--border-dark); }
+            
+            /* Horizontal scrolling for food items */
+            .item-list { 
+                flex-direction: row; 
+                overflow-x: auto; 
+                padding-bottom: 5px; 
+                min-height: auto;
+                gap: 10px;
+            }
+            
+            .meal-item { white-space: nowrap; font-size: 0.95rem; padding: 8px 12px; }
+            
+            .action-row { margin-bottom: 10px; }
+            .action-row button { padding: 8px; font-size: 1rem; }
+            
+            /* Stack calendar days vertically */
+            .day-row { 
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 12px;
+            }
+            .day-label { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                padding: 10px 15px; 
+                font-size: 1.2rem;
+            }
+            .day-date-span { margin-top: 0; font-size: 1.1rem; }
+            .drop-zone { min-height: 65px; }
+        }
 
         /* Print Media Query */
         @media print {
@@ -596,4 +654,3 @@
     </script>
 </body>
 </html>
-.
